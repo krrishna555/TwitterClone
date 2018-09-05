@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+{% block content %}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Hello {{ username }}!</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li align="right">
+	  {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+	  <a href="{{ path("logout") }}">Logout</a>
+	  {% endif %}
+	  </li>
+    </ul>
+  </div>
+</nav>
+	<div style="width:500px; margin:0 auto;">
+    <form action="{{ path("create") }}" method="post" align="center">
+        <textarea class="form-control col-xs-6" maxlength="140" rows="4" cols="20" name="content" placeholder="enter a tweet"></textarea></br>
+        <input class="btn btn-info" type="submit" value="tweet">
+    </form>
+	</div>
+
+	{% for message in app.session.getFlashBag.get('message') %}
+		{{ message }}
+	{% endfor %}
+	{{post}}
+    {% if posts %}
+        <ul align="center">
+            {% for post in posts %}
+			<legend>
+                <li>{{ post.id }} {{ post.content }} ({{ post.occurredAt|date("F j, Y g:ia") }}) </li>
+				<form action="{{ path("retweet") }}" method="post">
+					<input name="id" type="hidden" value="{{post.id}}">
+					<input name="count" type="hidden" value="{{post.count}}">
+					<input name="content" type="hidden" value="{{post.content}}">
+					{{post.count}} <span class="glyphicon glyphicon-repeat"></span> <input type="submit" class="btn btn-info" value=" retweet">
+					</form>
+			</legend>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

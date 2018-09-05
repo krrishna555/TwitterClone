@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <h2 align="center">Login</h2>
+    <form action="{{ path('login_check') }}" method="post" align="center">
+      <p><font color="red"> {{ error }} </font></p>
+    <br>UserName <input type="text" name="_username" value="{{ last_username }}" /><br></br>
+    Password <input type="password" name="_password" value="" placeholder="password"/></br></br>
+        <input type="submit" class="btn btn-success" value="login"/>
+    </form>
+{% endblock %}

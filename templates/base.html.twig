@@ -1,0 +1,26 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Silex Twitter Clone</title>
+		<link rel="stylesheet" type="text/css" href="../../bootstrap/bootstrap/css/bootstrap.min.css">
+		        <style type="text/css">
+
+            ul {
+                margin:0;
+                padding:0;
+                text-align: center;
+                list-style:none;                
+            }
+            ul  li {
+                padding: 2px 5px;               
+            }
+            }
+        </style>
+    </head>
+    <body background="../twitte.png">
+        <h1 align="center">Silex Twitter Clone</h1>
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </body>
+</html>
